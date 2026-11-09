@@ -1,7 +1,11 @@
 Nama Merek Bisnis: Creative Vault
+
 Nomor Kelompok: Kelompok 3   
+
 Kelas: WebDev D   
+
 Tema Bisnis: Penyewaan Kamera Digital dan Peralatan Produksi Video   
+
 Tautan GitHub Pages: https://webdevelopmentkelompok3.github.io/Creative-Vault/
 
 Daftar Anggota Kelompok:  
