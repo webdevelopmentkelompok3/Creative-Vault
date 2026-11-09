@@ -3,6 +3,7 @@ Nomor Kelompok: Kelompok 3
 Kelas: WebDev D   
 Tema Bisnis: Penyewaan Kamera Digital dan Peralatan Produksi Video   
 Tautan GitHub Pages: https://webdevelopmentkelompok3.github.io/Creative-Vault/
+
 Daftar Anggota Kelompok: 
 1. Candy White, 1710625024, CEO, Buat Repositori GitHub (Beri tanda centang Add a README file), Aktifkan GitHub Pages di menu Settings > Pages (ubah Branch ke main), Isi file README.md dengan nama merek, kelompok 3, kelas WebDev D, tema penyewaan kamera, link GitHub Pages, dan daftar anggota kelompok beserta NIM & perannya, Menulis kode bagian kepala halaman dengan atribut, Menulis kode bagian kaki halaman dengan atribut, Gabungkan & unggah seluruh file (index.html, styles.css, script.js) dari tim ke GitHub.
 2. Azzahra Putri Suhaila, 1710625088, PM 1, Menulis kode HTML bagian utama (hero) dengan atribut, Berisi judul utama promosi bisnis penyewaan kamera, paragraf penjelasan solusi layanan, 3 keunggulan utama bagi pelanggan, dan tombol ajakan bertindak (Call to Action yang mengarah ke kalkulator).
