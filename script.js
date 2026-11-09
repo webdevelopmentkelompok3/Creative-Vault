@@ -1,51 +1,60 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Creative Vault</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+// ===== SE 1: baca harga paket x jumlah hari =====
 
-<!-- CALC SECTION - SE 1 -->
-<section id="calc-section" data-role="SE">
-  <div class="calc-container">
-    <h2 class="calc-title">Kalkulator Simulasi Sewa</h2>
-    <p class="calc-subtitle">
-      Pilih paket, tentukan jumlah hari peminjaman alat, dan masukkan kode promo
-      untuk melihat estimasi biaya sewa di Creative Vault.
-    </p>
+function formatRupiah(angka) {
+  return "Rp" + Math.round(angka).toLocaleString("id-ID");
+}
 
-    <form id="calc-form" class="calc-form" novalidate>
+// Membaca harga paket yang dipilih
+function ambilHargaPaket() {
+  return Number(document.getElementById("paket").value);
+}
 
-      <div class="form-group">
-        <label for="paket">Pilih Paket</label>
-        <select id="paket" name="paket">
-          <option value="150000" data-nama="Paket Kamera Dasar">Paket Kamera Dasar - Rp150.000 / hari</option>
-          <option value="350000" data-nama="Paket Peralatan Vlog Lengkap">Paket Peralatan Vlog Lengkap - Rp350.000 / hari</option>
-          <option value="750000" data-nama="Paket Produksi Sinema">Paket Produksi Sinema - Rp750.000 / hari</option>
-        </select>
-      </div>
+// Membaca nama paket yang dipilih
+function ambilNamaPaket() {
+  var pilihan = document.getElementById("paket");
+  return pilihan.options[pilihan.selectedIndex].getAttribute("data-nama");
+}
 
-      <div class="form-group">
-        <label for="jumlah-hari">Jumlah Hari Peminjaman Alat</label>
-        <input type="number" id="jumlah-hari" name="jumlah-hari" min="1" step="1" value="1" placeholder="Contoh: 3">
-      </div>
+// Membaca jumlah hari peminjaman
+function ambilJumlahHari() {
+  return Number(document.getElementById("jumlah-hari").value);
+}
 
-      <div class="form-group">
-        <label for="kode-promo">Kode Promo</label>
-        <input type="text" id="kode-promo" name="kode-promo" placeholder="Masukkan kode promo (opsional)" autocomplete="off">
-      </div>
+// Fungsi dasar: harga paket dikalikan jumlah hari
+function hitungHargaDasar(hargaPaket, jumlahHari) {
+  return hargaPaket * jumlahHari;
+}
 
-      <button type="submit" id="btn-hitung" class="btn-hitung">Hitung</button>
-    </form>
+// Dijalankan saat tombol Hitung ditekan
+function hitungTotal() {
+  var hasil = document.getElementById("hasil");
+  var namaPaket = ambilNamaPaket();
+  var hargaPaket = ambilHargaPaket();
+  var jumlahHari = ambilJumlahHari();
 
-    <!-- Tempat hasil perhitungan -->
-    <div id="hasil" class="calc-result" aria-live="polite"></div>
-  </div>
-</section>
+  if (!Number.isInteger(jumlahHari) || jumlahHari < 1) {
+    hasil.className = "calc-result error";
+    hasil.innerHTML = "<p>Masukkan jumlah hari berupa bilangan bulat minimal 1.</p>";
+    return;
+  }
 
-<script src="script.js"></script>
-</body>
-</html>
+  var hargaAwal = hitungHargaDasar(hargaPaket, jumlahHari);
+
+  // ===== BAGIAN SE 2: logika kode promo & diskon ditambahkan di sini =====
+
+  hasil.className = "calc-result";
+  hasil.innerHTML =
+    "<h3>Rincian Biaya Sewa</h3>" +
+    "<ul class=\"calc-detail\">" +
+      "<li><span>Paket</span><strong>" + namaPaket + "</strong></li>" +
+      "<li><span>Harga per hari</span><strong>" + formatRupiah(hargaPaket) + "</strong></li>" +
+      "<li><span>Jumlah hari</span><strong>" + jumlahHari + " hari</strong></li>" +
+      "<li class=\"total\"><span>Harga awal</span><strong>" + formatRupiah(hargaAwal) + "</strong></li>" +
+    "</ul>";
+}
+
+// Hubungkan form dengan fungsi hitung
+document.getElementById("calc-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  hitungTotal();
+});
